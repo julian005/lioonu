@@ -3566,7 +3566,7 @@ function stopMining() {
   stopBroadcast();
 }
 function addWorker() {
-  var newWorker = new Worker("worker.js");
+  var newWorker = new Worker("/js/worker.js");
   workers.push(newWorker);
   newWorker.onmessage = on_workermsg;
   setTimeout(function () {

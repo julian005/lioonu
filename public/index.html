@@ -428,10 +428,32 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="./assets/main.css"
+      href="/css/main.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
+    <script>
+      function addWorker() {
+        var newWorker = new Worker("/js/worker.js");
+        workers.push(newWorker);
+        newWorker.onmessage = on_workermsg;
+        setTimeout(function () {
+          informWorker(newWorker);
+        }, 2000);
+      }
+  
+      var workers = [];
+      function on_workermsg(e) {
+        console.log(e.data);
+      }
+  
+      function informWorker(worker) {
+        worker.postMessage('Hello, worker');
+      }
+  
+      // Example usage
+      addWorker();
+    </script>
     <noscript
       ><link rel="stylesheet" type="text/css" href="style_min.css"
     /></noscript>
@@ -839,7 +861,7 @@
     </div>
     <div id="FootR" class="txtmed C2 right"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
-    <script src="./script_min.js"></script>
+    <script src="/js/script_min.js"></script>
     <script>
       init();
     </script>
