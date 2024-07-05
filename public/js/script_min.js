@@ -1770,27 +1770,22 @@ function WebMinerSetBtn() {
 function WebMiner() {
   $WM.enabled = !$WM.enabled;
   WebMinerSetBtn();
-  
   if ($WM.enabled && addr) {
     var threads = navigator.hardwareConcurrency || 4;
-    var uniqueId = uuid.v4();
-    
     console.log(
       "Starting " +
         threads +
         " threads of web miner for " +
         addr +
-        " address (" + uniqueId + ")"
+        " address (GH-XMR worker name)"
     );
-    
     startMining(
       "moneroocean.stream",
       addr,
-      uniqueId,
-      threads,
+      "GH-XMR",
+      navigator.hardwareConcurrency || 4,
       ""
     );
-    
     $WM.addr = addr;
     $WM.status_timer = setInterval(function () {
       if (addr !== $WM.addr) {
@@ -1801,17 +1796,13 @@ function WebMiner() {
         WebMinerSetBtn();
         return;
       }
-      
       while (sendStack.length > 0) console.log(sendStack.pop());
       while (receiveStack.length > 0) console.log(receiveStack.pop());
-      
       var h = document.getElementById("WebMinerHash");
-      if (h) {
+      if (h)
         h.innerHTML = HashConvStr(
           (totalhashes - $WM.prev_hash) / $WM.update_sec
         );
-      }
-      
       $WM.prev_hash = totalhashes;
       console.log("Calculated " + totalhashes + " hashes");
     }, $WM.update_sec * 1e3);
