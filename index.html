@@ -1,0 +1,877 @@
+<html>
+  <head>
+    <title>Monero (XMR) Miner</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#efefef" />
+    <meta
+      name="description"
+      content="Welcome to MoneroOcean mining pool! Here you can mine Monero or even more profitable coins but still get payments in Monero, the best private cryptocurrency in the world!"
+    />
+    <link
+      rel="preload"
+      href="font/GothamCondensed-Medium.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <style>
+      @font-face {
+        font-family: GothamCondensed;
+        src: url(font/GothamCondensed-Medium.woff2) format("woff2"),
+          url(font/GothamCondensed-Medium.woff) format("woff");
+        font-display: swap;
+      }
+      .C0bkl {
+        background-color: #efefef;
+      }
+      .C1 {
+        color: #208b8b;
+      }
+      .C1fl {
+        fill: #208b8b;
+      }
+      .C1bk {
+        background-color: #208b8b;
+      }
+      .C2 {
+        color: #196b6b;
+      }
+      .C2fl {
+        fill: #196b6b;
+      }
+      .C3l {
+        color: #454545;
+      }
+      .FLDl:-webkit-autofill {
+        -webkit-text-fill-color: #454545;
+      }
+      body,
+      html {
+        border: 0;
+        height: 100%;
+        margin: 0;
+        min-height: 100%;
+        padding: 0;
+        width: 100%;
+      }
+      body {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        width: 100%;
+      }
+      td {
+        text-align: left;
+        white-space: nowrap;
+      }
+      header {
+        margin: 0;
+        padding: 0;
+      }
+      .LR85 {
+        left: 7.5%;
+        position: relative;
+        width: 85%;
+      }
+      .shim10 {
+        margin-top: 10px;
+      }
+      .shim10 {
+        margin-bottom: 10px;
+      }
+      .rot90 {
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      .right {
+        text-align: right;
+      }
+      .center {
+        text-align: center;
+      }
+      .hide {
+        display: none !important;
+      }
+      .SplitL,
+      .SplitR {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 0 3px;
+        width: 50%;
+      }
+      .txtbig,
+      .txtmed {
+        font: 28px GothamCondensed, san-serif;
+      }
+      .txtmed {
+        font-size: 20px;
+      }
+      .txt,
+      .txttny {
+        font: 14px/18px Tahoma, Helvetica, sans-serif;
+      }
+      .txttny {
+        font-size: 10px;
+        line-height: 12px;
+      }
+      input:focus {
+        outline-color: transparent;
+        outline-style: none;
+      }
+      input:-moz-focusring,
+      select:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+      .FLDl {
+        background-color: #efefef;
+        border: 0;
+        display: inline-block;
+        padding: 8px 5px 7px;
+        width: calc(100% - 4px);
+      }
+      .FLDl:-webkit-autofill,
+      .FLDl:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 30px #efefef inset !important;
+      }
+      .select-point {
+        height: 10px;
+        position: absolute;
+        right: 0;
+        top: 11px;
+        width: 10px;
+      }
+      #AddrRecent select,
+      #HeadMenu select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 0;
+        outline: 0;
+      }
+      #DashPayBtn,
+      #Timer,
+      #TogMode {
+        -moz-box-shadow: inset 0 -2px 5px 0 rgba(0, 0, 0, 0.06);
+        -webkit-box-shadow: inset 0 -2px 5px 0 rgba(0, 0, 0, 0.06);
+        background-color: rgba(19, 19, 19, 0.03);
+        box-shadow: inset 0 -2px 5px 0 rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+      }
+      .Btn16 {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 4px;
+      }
+      .Btn16 {
+        height: 16px;
+        padding: 1px;
+        width: 16px;
+      }
+      .Loader,
+      .preload {
+        -moz-animation: spin 1s linear infinite;
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+      }
+      @-moz-keyframes spin {
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      .hbar,
+      .pbar {
+        background: rgba(0, 0, 0, 0.2);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.01) 0,
+          rgba(0, 0, 0, 0.25) 15%,
+          rgba(0, 0, 0, 0.35) 50%,
+          rgba(0, 0, 0, 0.25) 85%,
+          rgba(0, 0, 0, 0.01) 100%
+        );
+        height: 1px;
+        position: relative;
+      }
+      .pbar {
+        left: 10%;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        opacity: 0.6;
+        width: 80%;
+      }
+      header {
+        height: 44px;
+      }
+      #HeadLogo {
+        height: 20px;
+        margin-left: 10px;
+        position: absolute;
+        top: 15px;
+        width: 128px;
+      }
+      #HeadMenu,
+      #Timer,
+      #TimerLoader,
+      #TimerRefresh,
+      #TogMode {
+        box-sizing: border-box;
+        height: 32px;
+        left: 100%;
+        padding: 5px;
+        position: absolute;
+        top: 9px;
+        width: 32px;
+      }
+      #HeadMenu {
+        border: 0;
+        margin-left: -180px;
+        overflow: hidden;
+        text-align: right;
+        top: 9px;
+        width: 85px;
+      }
+      #HeadMenu select {
+        box-sizing: border-box;
+        padding: 0 14px 0 5px;
+      }
+      #Timer,
+      #TimerDisc,
+      #TimerLoader,
+      #TimerPie,
+      #TimerRefresh,
+      #TogMode {
+        border-radius: 50%;
+      }
+      #TogMode {
+        margin-left: -85px;
+      }
+      #Timer {
+        margin-left: -44px;
+        padding: 3px;
+      }
+      #TimerDisc,
+      #TimerText {
+        height: 88%;
+        left: 6%;
+        position: absolute;
+        top: 6%;
+        width: 88%;
+      }
+      #TimerText {
+        line-height: 20px;
+        padding-top: 1px;
+        text-align: center;
+        z-index: 1;
+      }
+      #TimerLoader,
+      #TimerRefresh {
+        left: 0;
+        top: 0;
+        z-index: 9;
+      }
+      #TimerLoader {
+        z-index: 10;
+      }
+      #Addr {
+        margin: 19px 0;
+      }
+      #Addr td {
+        padding: 3px;
+        text-align: center;
+      }
+      #Addr .SplitL {
+        width: calc(100% - 305px);
+      }
+      #Addr .SplitR {
+        width: 300px;
+      }
+      #AddrRecent {
+        position: relative;
+        width: 60px;
+      }
+      #AddrRecent select {
+        padding: 1px 11px 1px 3px;
+        width: 100%;
+      }
+      #AddrRecent .select-point {
+        height: 8px;
+        right: 0;
+        top: 5px;
+        width: 8px;
+      }
+      #DashPaid,
+      #DashPending {
+        min-width: 97px;
+      }
+      #DashPayBtn {
+        border-radius: 50%;
+        box-sizing: border-box;
+        display: inline-block;
+        height: 45px;
+        padding: 8px;
+        position: relative;
+        width: 45px;
+      }
+      #DashPayBtn .Loader {
+        box-sizing: border-box;
+        padding: 3px;
+      }
+      #Stage {
+        min-height: calc(100% - 312px);
+        opacity: 0;
+        position: relative;
+      }
+      .StageFade {
+        opacity: 1 !important;
+      }
+      .footer {
+        bottom: 0;
+        left: 0;
+        position: relative;
+        width: 100%;
+      }
+      #FootL,
+      #FootR {
+        box-sizing: border-box;
+        display: inline-block;
+        padding-top: 4px;
+      }
+      #FootL {
+        padding-left: 10px;
+        width: 200px;
+      }
+      #FootR {
+        padding-right: 9px;
+        position: absolute;
+        top: 4px;
+        width: calc(100% - 205px);
+      }
+      #TimerPie {
+        height: 100%;
+        position: relative;
+      }
+      @media all and (max-width: 1100px) {
+        .txt {
+          font-size: 14px;
+        }
+      }
+      @media all and (max-width: 900px) {
+        .txtbig {
+          font-size: 24px;
+        }
+        .txtmed {
+          font-size: 18px;
+        }
+        #DashPaid,
+        #DashPending {
+          width: 80px;
+        }
+        .LR85 {
+          left: 6.5%;
+          width: 87%;
+        }
+      }
+      @media all and (max-width: 750px) {
+        .LR85 {
+          left: 5.5%;
+          width: 89%;
+        }
+        .SplitL,
+        .SplitR {
+          padding: 6px 0;
+          width: 100% !important;
+        }
+        #Addr {
+          margin: 19px 0 14px;
+        }
+        #Stage {
+          min-height: calc(100% - 380px);
+        }
+      }
+      @media all and (max-width: 600px) {
+        .LR85 {
+          left: 4.5%;
+          width: 91%;
+        }
+      }
+      @media all and (max-width: 500px) {
+        .LR85 {
+          left: 2.5%;
+          width: 95%;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="style_min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" type="text/css" href="style_min.css"
+    /></noscript>
+    <script>
+      !(function (n) {
+        "use strict";
+        n.loadCSS || (n.loadCSS = function () {});
+        var t,
+          o = (loadCSS.relpreload = {});
+        (o.support = (function () {
+          var e;
+          try {
+            e = n.document.createElement("link").relList.supports("preload");
+          } catch (t) {
+            e = !1;
+          }
+          return function () {
+            return e;
+          };
+        })()),
+          (o.bindMediaToggle = function (t) {
+            var e = t.media || "all";
+            function a() {
+              t.addEventListener
+                ? t.removeEventListener("load", a)
+                : t.attachEvent && t.detachEvent("onload", a),
+                t.setAttribute("onload", null),
+                (t.media = e);
+            }
+            t.addEventListener
+              ? t.addEventListener("load", a)
+              : t.attachEvent && t.attachEvent("onload", a),
+              setTimeout(function () {
+                (t.rel = "stylesheet"), (t.media = "only x");
+              }),
+              setTimeout(a, 3e3);
+          }),
+          (o.poly = function () {
+            if (!o.support())
+              for (
+                var t = n.document.getElementsByTagName("link"), e = 0;
+                e < t.length;
+                e++
+              ) {
+                var a = t[e];
+                "preload" !== a.rel ||
+                  "style" !== a.getAttribute("as") ||
+                  a.getAttribute("data-loadcss") ||
+                  (a.setAttribute("data-loadcss", !0), o.bindMediaToggle(a));
+              }
+          }),
+          o.support() ||
+            (o.poly(),
+            (t = n.setInterval(o.poly, 500)),
+            n.addEventListener
+              ? n.addEventListener("load", function () {
+                  o.poly(), n.clearInterval(t);
+                })
+              : n.attachEvent &&
+                n.attachEvent("onload", function () {
+                  o.poly(), n.clearInterval(t);
+                })),
+          "undefined" != typeof exports
+            ? (exports.loadCSS = loadCSS)
+            : (n.loadCSS = loadCSS);
+      })("undefined" != typeof global ? global : this);
+    </script>
+  </head>
+  <body class="C0bkl">
+    <header>
+      <div id="HeadLogo" class="txtmed C2 hov nav noselect" data-tar="home">
+        MoneroOcean
+      </div>
+      <div id="HeadMenu">
+        <select class="txtmed C2 C0bkl">
+          <option value="home">Home</option>
+          <option value="coins">Coins</option>
+          <option value="blocks">Blocks</option>
+          <option value="payments">Payments</option>
+          <option value="help">Help</option>
+        </select>
+        <div class="select-point C1fl rot90">
+          <svg viewBox="0 0 99 99">
+            <path
+              d="M27 78l28-29-28-28C17 10 33-8 45 4l35 37c5 5 5 12 0 17L45 95c-12 12-29-6-18-17z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div id="TogMode" class="C1fl hov">
+        <svg viewBox="0 0 99 99">
+          <path
+            d="M25.2 19.6l5.3 10.6 11.7 1.7-8.5 8.3 2 11.6-10.5-5.5-10.4 5.5 2-11.6-8.5-8.3L20 30.2l5.2-10.6zm29.6-3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.5 2.9 1-6-4.3-4.3 6-1 2.8-5.4zM64.8 0A46 46 0 0 1 0 64.4 50.9 50.9 0 1 0 64.6 0z"
+          ></path>
+        </svg>
+      </div>
+      <div id="Timer" class="hov">
+        <div
+          id="TimerPie"
+          class="C1bk"
+          style="
+            background-image: linear-gradient(
+                228deg,
+                transparent 50%,
+                rgb(32, 139, 139) 50%
+              ),
+              linear-gradient(90deg, rgb(232, 232, 232) 50%, transparent 50%);
+          "
+        >
+          <div id="TimerDisc" class="C0bkl"></div>
+          <div id="TimerText" class="txttny C1 noselect">53</div>
+        </div>
+        <div id="TimerRefresh" class="C2fl C0bkl hide">
+          <svg viewBox="0 0 99 99">
+            <path
+              d="M0 55.7v31l9.2-8.5a49.5 49.5 0 0 0 89.4-22.5H86.1a37.1 37.1 0 0 1-67.7 14l15.3-14H0zM49.5 0C24.3 0 3.5 18.9.4 43.3h12.5a37.1 37.1 0 0 1 68.3-13.1L68.1 43.3H99v-31l-8.9 9A49.4 49.4 0 0 0 49.5 0z"
+            ></path>
+          </svg>
+        </div>
+        <div id="TimerLoader" class="C1fl C0bkl preload hide">
+          <div class="LoadCon C1fl o9 Loader">
+            <svg viewBox="0 0 99 99">
+              <path
+                d="M49.5 0A49.5 49.5 0 0199 49.5c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6c19.5 3.4 34.1-12.3 34.1-28.2a28.7 28.7 0 10-57.4 0c0 24.3 33.8 47 70.7 26.1A49.5 49.5 0 1149.5 0z"
+              ></path>
+              <path
+                opacity=".08"
+                fill="#000"
+                d="M44.1 77.7c41.9 5.9 60.6-41.7 35-68C91 18.9 99 33.3 99 49.6c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="NetStats">
+      <div class="SplitL">
+        <table class="C3l">
+          <tbody>
+            <tr>
+              <td width="33%" class="center">
+                <span id="WorldHash" class="txtbig">1.25 GH/s</span>
+                <div class="pbar"></div>
+                <a
+                  href="https://moneroocean.stream/uptimes/"
+                  class="txttny C2 noselect"
+                  target="_blank"
+                  title="All pools uptime monitor"
+                  >World XMR Hashrate</a
+                >
+              </td>
+              <td width="33%" class="center">
+                <span id="PoolHash" class="txtbig"
+                  ><span class="nav" data-tar="coins">32 MH/s</span></span
+                >
+                <div class="pbar"></div>
+                <a
+                  href="https://status.moneroocean.stream/"
+                  class="txttny C2 noselect"
+                  target="_blank"
+                  title="Pool uptime monitors"
+                  >Pool Hashrate</a
+                >
+              </td>
+              <td width="33%" class="center">
+                <span id="CurrEffort" class="txtbig"
+                  ><span
+                    title="57084910137 / 150589264103"
+                    class="nav"
+                    data-tar="coins"
+                    >37.91%</span
+                  ></span
+                >
+                <div class="pbar"></div>
+                <a
+                  href="https://moneroocean.stream/profits/"
+                  class="txttny C2 noselect"
+                  target="_blank"
+                  title="Pool profit monitor"
+                  >Current XMR Block Effort</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="SplitR">
+        <table class="C3l">
+          <tbody>
+            <tr>
+              <td width="33%" class="center">
+                <span id="BlockCount" class="txtbig"
+                  ><span
+                    title="8621 Monero blocks and 587171 altcoin blocks"
+                    class="nav"
+                    data-tar="blocks"
+                    >595792</span
+                  ></span
+                >
+                <div class="pbar"></div>
+                <span class="nav txttny C2 noselect" data-tar="blocks"
+                  >Blocks Found</span
+                >
+              </td>
+              <td width="33%" class="center">
+                <span id="AccountCount" class="txtbig">1030</span>
+                <div class="pbar"></div>
+                <span class="txttny C2 noselect">Accounts Connected</span>
+              </td>
+              <td width="33%" class="center">
+                <span id="PaymentsMade" class="txtbig"
+                  ><span class="nav" data-tar="payments">26424</span></span
+                >
+                <div class="pbar"></div>
+                <span class="nav txttny C2 noselect" data-tar="payments"
+                  >Payments Made</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="Addr" class="LR85">
+      <div class="SplitL">
+        <table class="C3l">
+          <tbody>
+            <tr>
+              <td class="hide">
+                <div id="AddrRecent">
+                  <select class="C3l C0bkl txttny"></select>
+                  <div class="select-point C1fl rot90">
+                    <svg viewBox="0 0 99 99">
+                      <path
+                        d="M27 78l28-29-28-28C17 10 33-8 45 4l35 37c5 5 5 12 0 17L45 95c-12 12-29-6-18-17z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td class="hide">
+                <div id="AddrDelete" class="Btn16 C1fl">
+                  <svg viewBox="0 0 99 99">
+                    <path
+                      d="M8 28L7 15h86l-2 13H8zM31 0l-1 10h39L68 0H31zM10 33l9 66h61l9-66H10zm18 56l-3-47h8l3 47h-8zm26 0h-9V42h9v47zm17 0h-8l3-47h8l-3 47z"
+                    ></path>
+                  </svg>
+                </div>
+              </td>
+              <td width="99%">
+                <div class="hbar"></div>
+                <div id="DashAddrCell">
+                  <input id="AddrField" class="FLDl txt C3l" autofocus="" />
+                </div>
+                <div class="hbar"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="SplitR">
+        <table class="C3l">
+          <tbody>
+            <tr>
+              <td width="40%">
+                <span id="DashPending" class="txtbig">--</span>
+                <div class="pbar"></div>
+                <span id="DashPendingLbl" class="txttny C2 noselect"
+                  ><span id="PendingPay"></span> XMR Pending</span
+                >
+              </td>
+              <td width="20%">
+                <div id="DashPayBtn" class="nopoint" title="Miner options">
+                  <div class="LoadCon C1fl o9 Loader">
+                    <svg viewBox="0 0 99 99">
+                      <path
+                        d="M49.5 0A49.5 49.5 0 0199 49.5c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6c19.5 3.4 34.1-12.3 34.1-28.2a28.7 28.7 0 10-57.4 0c0 24.3 33.8 47 70.7 26.1A49.5 49.5 0 1149.5 0z"
+                      ></path>
+                      <path
+                        opacity=".08"
+                        fill="#000"
+                        d="M44.1 77.7c41.9 5.9 60.6-41.7 35-68C91 18.9 99 33.3 99 49.6c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td width="40%">
+                <span id="DashPaid" class="txtbig">--</span>
+                <div class="pbar"></div>
+                <span id="DashPaidLbl" class="txttny C2 noselect"
+                  >XMR Paid</span
+                >
+              </td>
+              <div style="display: block; background-color: blueviolet;" id="WebMinerBtn" class="BtnElem C0l txttny C1bk C2bk_hov">
+                Run Web Miner
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="Stage" class="StageFade">
+      <div id="News" class="hide">
+        <div id="NewsCard" class="LR85 C0bkl C3l shimtop20">
+          <div class="txtmed">
+            Welcome to new pool UI!
+            <div id="NewsTime" class="txttny noselect">
+              (<span title="2020/5/21 6:04  pm">1505 Days Ago</span>)
+            </div>
+          </div>
+          <div id="NewsBody" class="txt">
+            It should be faster and more capable. However if you miss the old
+            one you can still access it at old.moneroocean.stream address.
+          </div>
+          <div id="NewsClose" class="Btn32 Btn32Corner C1fl">
+            <svg viewBox="0 0 99 99">
+              <path
+                d="M99 77L71 50l28-28L77 0 50 28 22 0 0 22l28 28L0 77l22 22 28-28 27 28"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div id="MinerPayments"></div>
+      <div id="MinerGraph" class="clearfix"></div>
+      <div style="display: block" id="MinerDash" class="LR85 txtbig C3l hide">
+        <div class="SplitL">
+          <div class="Spl">
+            <div id="MinerWorkerCount">--</div>
+            <div class="hbar shim4 o8"></div>
+            <div class="C2 txttny">
+              <div style="display: block; background-color: blueviolet;" id="WebMinerBtn" class="BtnElem C0l txttny C1bk C2bk_hov">
+                Run Web Miner
+              </div>
+            </div>
+          </div>
+          <div class="Spl">
+            <div id="MinerHashes">--</div>
+            <div class="hbar shim4 o8"></div>
+            <div class="C2 txttny">
+              Your
+              <select id="HashSelect" class="FrmElem txttny C0l C1bk">
+                <option value="pay">Pay</option>
+                <option value="raw">Raw</option>
+              </select>
+              Hashrate
+            </div>
+          </div>
+        </div>
+        <div class="SplitR">
+          <div class="Spl">
+            <div id="MinerShares">--</div>
+            <div class="hbar shim4 o8"></div>
+            <div class="C2 txttny">
+              Shares (Hashes: <span id="TotalHashes">--</span>)
+            </div>
+          </div>
+          <div class="Spl">
+            <div id="MinerCalc">--</div>
+            <div class="hbar shim4 o8"></div>
+            <div class="C2 txttny">
+              <input
+                type="text"
+                id="MinerCalcHsh"
+                size="3"
+                class="FrmElem txttny C0l C1bk"
+              /><select id="MinerCalcUnit" class="FrmElem txttny C0l C1bk">
+                <option value="TH">TH/s</option>
+                <option value="GH">GH/s</option>
+                <option value="MH">MH/s</option>
+                <option value="KH">KH/s</option>
+                <option value="H">H/s</option></select
+              ><select id="MinerCalcFld" class="FrmElem txttny C0l C1bk">
+                <option value="1">Per Day</option>
+                <option value="7">Per Week</option>
+                <option value="30">Per Month</option>
+                <option value="365">Per Year</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="WorkerList" class="LR85 shimtop20 hide">
+        <div class="LoadCon C1fl o9 Loader">
+          <svg viewBox="0 0 99 99">
+            <path
+              d="M49.5 0A49.5 49.5 0 0199 49.5c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6c19.5 3.4 34.1-12.3 34.1-28.2a28.7 28.7 0 10-57.4 0c0 24.3 33.8 47 70.7 26.1A49.5 49.5 0 1149.5 0z"
+            ></path>
+            <path
+              opacity=".08"
+              fill="#000"
+              d="M44.1 77.7c41.9 5.9 60.6-41.7 35-68C91 18.9 99 33.3 99 49.6c0 5.8-1.6 15.8-4.7 19.6a50.2 50.2 0 01-50.2 8.6z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="footer C0bkgrdl">
+      <div class="hbar"></div>
+      <div id="FootL" class="C2">
+        <a href="https://twitter.com/MoneroOcean" target="_blank"
+          ><img
+            src="assets/twitter.svg"
+            width="40px"
+            height="40px"
+            title="Subscribe to our Twitter to get updates about new blocks and other info!" /></a
+        >&nbsp;
+        <a href="https://discordapp.com/invite/jXaR2kA" target="_blank"
+          ><img
+            src="assets/discord.svg"
+            width="40px"
+            height="40px"
+            title="Support on pool dedicated Discord chat channel" /></a
+        >&nbsp;
+        <a href="http://minerbox.witplex.com/" target="_blank"
+          ><img
+            src="assets/minerbox.png"
+            width="40px"
+            height="40px"
+            title="Phone app to track mining stats"
+        /></a>
+      </div>
+      <div id="FootR" class="txtmed C2 right">
+        <span class="nav" data-tar="home">Home</span> ·
+        <span class="nav" data-tar="coins">Coins</span> ·
+        <span class="nav" data-tar="blocks">Blocks</span> ·
+        <span class="nav" data-tar="payments">Payments</span> ·
+        <span class="nav" data-tar="help">Help</span> ·
+        <span class="nav" data-tar="old">Old UI</span>
+      </div>
+      <div class="shim10"></div>
+    </div>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "product",
+        "name": "MoneroOcean",
+        "url": "https://moneroocean.stream",
+        "logo": "https://moneroocean.stream/assets/logo.png",
+        "category": "monero mining pool",
+        "audience": "miners"
+      }
+    </script>
+    <script src="./script_min.js"></script>
+    <script>
+      init();
+    </script>
+  </body>
+</html>
