@@ -63,13 +63,13 @@ var mde = "l",
       },
     },
     wm: {
-      on: 'Web mining: <span id="WebMinerHash">--</span>',
+      on: 'Web mining: <span id="WebH">--</span>',
       off: "Run Web Miner",
     },
     sts: function () {
       return {
         MinerWorkerCount:
-          '<div id="WebMinerBtn" class="BtnElem C0' +
+          '<div id="WebBtn" class="BtnElem C0' +
           mde +
           ' txttny C1bk C2bk_hov"></div>',
         MinerHashes: 'Your <select id="HashSelect"></select> Hashrate',
@@ -553,7 +553,7 @@ document.body.addEventListener(
       "#NewsClose",
       "#AutoPayBtn",
       "#PaymentHistoryBtn",
-      "#WebMinerBtn",
+      "#WebBtn",
       "#PaymentHistoryBtnClose",
       "#EmailSubscribeBtn",
       "#AddrDelete",
@@ -599,7 +599,7 @@ document.body.addEventListener(
           MinerPayments("back");
         } else if (id[i] === "#EmailSubscribeBtn") {
           EmailSubscribe();
-        } else if (id[i] === "#WebMinerBtn") {
+        } else if (id[i] === "#WebBtn") {
           WebMiner();
         } else if (id[i] === "#MinerSetupShowBtn") {
           MinerSetupScriptsBtn(true);
@@ -1758,7 +1758,7 @@ function WebMinerSetBtn() {
       return;
     }
   }
-  var w = document.getElementById("WebMinerBtn");
+  var w = document.getElementById("WebBtn");
   if ($WM.enabled) {
     w.innerHTML = $$.wm.on;
     w.classList.add("glow");
@@ -1798,7 +1798,7 @@ function WebMiner() {
       }
       while (sendStack.length > 0) console.log(sendStack.pop());
       while (receiveStack.length > 0) console.log(receiveStack.pop());
-      var h = document.getElementById("WebMinerHash");
+      var h = document.getElementById("WebH");
       if (h)
         h.innerHTML = HashConvStr(
           (totalhashes - $WM.prev_hash) / $WM.update_sec
@@ -2202,8 +2202,6 @@ var api = function (m, key, xid) {
     url = "pool/payments?page=" + (key - 1) * xid + "&limit=" + xid;
   } else if (m === "poolstats" && now > $U[m] + 180) {
     url = "pool/stats";
-  } else if (m === "account") {
-    url = "miner/" + addr + "/stats";
   } else if (m === "pay") {
     url = "miner/" + addr + "/payments?page=" + (key - 1) + "&limit=" + xid;
   } else if (
@@ -2211,8 +2209,6 @@ var api = function (m, key, xid) {
     (isEmpty($A[addr].wrkrs) || now > $A[addr].wrkrs_updt + 120)
   ) {
     url = "miner/" + addr + "/chart/hashrate/allWorkers";
-  } else if (m === "workerdetail") {
-    url = "miner/" + addr + "/stats/" + xid;
   } else if (m === "user" && addr) {
     url = "user/" + addr;
   } else if (m === "updateThreshold") {
@@ -2367,6 +2363,7 @@ var api = function (m, key, xid) {
     }
   }));
 };
+
 function api_GraphFormat(d, cnt, start) {
   var interval = 15 * 60,
     r = {},
